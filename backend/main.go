@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"log"
-	"os/user"
 
 	"github.com/darksford123x/repairinvoice-record/controllers"
 	_ "github.com/darksford123x/repairinvoice-record/docs"
@@ -21,6 +20,7 @@ type Users struct {
 
 type User struct {
 	Uname string
+	id    int
 }
 
 type Devices struct {
@@ -45,8 +45,7 @@ type StatusRs struct {
 }
 
 type StatusR struct {
-	Rname string
-	id    int
+	Sname string
 }
 
 // @title SUT SA Example API
@@ -106,7 +105,7 @@ func main() {
 	v1 := router.Group("/api/v1")
 	controllers.NewUserController(v1, client)
 	controllers.NewDeviceController(v1, client)
-	controllers.NewStatusController(v1, client)
+	controllers.NewStatusRController(v1, client)
 	controllers.NewSymptomController(v1, client)
 	controllers.NewRepairInvoiceController(v1, client)
 
@@ -165,7 +164,7 @@ func main() {
 			User{"Michael Jackson", 2},
 		},
 	}
-	for _, u := range user.User {
+	for _, u := range users.User {
 		client.User.
 			Create().
 			SetUname(u.Uname).

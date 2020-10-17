@@ -16,7 +16,7 @@ type SymptomController struct {
 }
 
 type Symptom struct {
-	Fname string
+	Syname string
 }
 
 // CreateSymptom handles POST requests for adding symptom entities

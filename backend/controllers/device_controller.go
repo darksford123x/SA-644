@@ -17,8 +17,8 @@ type DeviceController struct {
 }
 
 type Device struct {
-	Brname string
-	id     int
+	Dname string
+	id    int
 }
 
 // CreateDevice handles POST requests for adding device entities
@@ -56,7 +56,7 @@ func (ctl *DeviceController) CreateDevice(c *gin.Context) {
 	d, err := ctl.client.Device.
 		Create().
 		SetDname(obj.Dname).
-		SetUser(u).
+		SetOwner(u).
 		Save(context.Background())
 
 	if err != nil {

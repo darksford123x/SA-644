@@ -16,7 +16,7 @@ type StatusRController struct {
 }
 
 type StatusR struct {
-	Fname string
+	Sname string
 }
 
 // CreateStatusR handles POST requests for adding statusr entities
