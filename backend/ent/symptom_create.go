@@ -51,11 +51,6 @@ func (sc *SymptomCreate) Save(ctx context.Context) (*Symptom, error) {
 	if _, ok := sc.mutation.Syname(); !ok {
 		return nil, &ValidationError{Name: "Syname", err: errors.New("ent: missing required field \"Syname\"")}
 	}
-	if v, ok := sc.mutation.Syname(); ok {
-		if err := symptom.SynameValidator(v); err != nil {
-			return nil, &ValidationError{Name: "Syname", err: fmt.Errorf("ent: validator failed for field \"Syname\": %w", err)}
-		}
-	}
 	var (
 		err  error
 		node *Symptom

@@ -71,11 +71,6 @@ func (uu *UserUpdate) RemoveDevice(d ...*Device) *UserUpdate {
 
 // Save executes the query and returns the number of rows/vertices matched by this operation.
 func (uu *UserUpdate) Save(ctx context.Context) (int, error) {
-	if v, ok := uu.mutation.Uname(); ok {
-		if err := user.UnameValidator(v); err != nil {
-			return 0, &ValidationError{Name: "Uname", err: fmt.Errorf("ent: validator failed for field \"Uname\": %w", err)}
-		}
-	}
 
 	var (
 		err      error
@@ -250,11 +245,6 @@ func (uuo *UserUpdateOne) RemoveDevice(d ...*Device) *UserUpdateOne {
 
 // Save executes the query and returns the updated entity.
 func (uuo *UserUpdateOne) Save(ctx context.Context) (*User, error) {
-	if v, ok := uuo.mutation.Uname(); ok {
-		if err := user.UnameValidator(v); err != nil {
-			return nil, &ValidationError{Name: "Uname", err: fmt.Errorf("ent: validator failed for field \"Uname\": %w", err)}
-		}
-	}
 
 	var (
 		err  error

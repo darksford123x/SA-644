@@ -18,7 +18,7 @@ import {
 } from '@backstage/core';
 import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import { ControllersUser, EntUser } from '../../api';
+import { ControllersRepairInvoice, EntRepairInvoice } from '../../api';
  
 const useStyles = makeStyles({
  table: {
@@ -26,32 +26,32 @@ const useStyles = makeStyles({
  },
 });
  
-export default function ComponentsRecordUserTable() {
+export default function ComponentsRecordRepairInvoiceTable() {
   const classes = useStyles();
   const http = new DefaultApi();
-  const [users, setUsers] = useState<EntUser[]>([]);
+  const [repairinvoices, setRepairInvoices] = useState<EntRepairInvoice[]>([]);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    const getUsers = async () => {
-      const res = await http.listUser({ limit: 10, offset: 0 });
+    const getRepairInvoices = async () => {
+      const res = await http.listRepairinvoice({ limit: 5, offset: 0 });
       setLoading(true);
-      setUsers(res);
+      setRepairInvoices(res);
       console.log(res);
     };
-    getUsers();
+    getRepairInvoices();
   }, [loading]);
   
-  const deleteUsers = async (id: number) => {
-    const res = await http.deleteUser({ id: id });
+  const deleteRepairInvoices = async (id: number) => {
+    const res = await http.deleteRepairInvoice({ id: id });
     setLoading(true);
   };
  
   
  return (
   <Page theme={pageTheme.tool}>
-    <Header title={`User information record`} type="Repairing computer systems" >
-    <Button variant="contained" color="default" href="/recorduser" startIcon={<PersonAddRoundedIcon />}> New user</Button>
+    <Header title={`Repaired Invoice record`} type="Repairing computer systems" >
+    <Button variant="contained" color="default" href="/recordrepairinvoice" startIcon={<PersonAddRoundedIcon />}> New Repaired Invoice</Button>
     <div>&nbsp;&nbsp;&nbsp;</div>
     <Button variant="contained" color="primary" href="/home" startIcon={<HomeRoundedIcon/>}> home</Button>
     </Header>
@@ -61,37 +61,35 @@ export default function ComponentsRecordUserTable() {
      <Table className={classes.table} aria-label="simple table">
        <TableHead>
          <TableRow>
-           <TableCell align="center">No</TableCell>
-           <TableCell align="center">Personal ID</TableCell>
-           <TableCell align="center">Name</TableCell>
-           <TableCell align="center">Faculty</TableCell>
-           <TableCell align="center">Branch</TableCell>
-           <TableCell align="center">Building</TableCell>
-           <TableCell align="center">Room</TableCell>
+           <TableCell align="center">queue</TableCell>
+           <TableCell align="center">Repaired Invoice ID</TableCell>
+           <TableCell align="center">Device</TableCell>
+           <TableCell align="center">User</TableCell>
+           <TableCell align="center">Symptom</TableCell>
+           <TableCell align="center">StatusR</TableCell>
          </TableRow>
        </TableHead>
 
        <TableBody>
-         {users.map((item:any) => (
+         {repairinvoices.map((item:any) => (
            <TableRow key={item.id}>
              <TableCell align="center">{item.id}</TableCell>
-             <TableCell align="center">{item.personalID}</TableCell>
-             <TableCell align="center">{item.personalName}</TableCell>
-             <TableCell align="center">{item.edges?.faculty?.fname}</TableCell>
-             <TableCell align="center">{item.edges?.branch?.brname}</TableCell>
-             <TableCell align="center">{item.edges?.building?.buname}</TableCell>
-             <TableCell align="center">{item.edges?.room?.rname}</TableCell>
+             <TableCell align="center">{item.Rename}</TableCell>
+             <TableCell align="center">{item.edges?.device?.dname}</TableCell>
+             <TableCell align="center">{item.edges?.user?.uname}</TableCell>
+             <TableCell align="center">{item.edges?.symptom?.syname}</TableCell>
+             <TableCell align="center">{item.edges?.statusr?.sname}</TableCell>
 
              <TableCell align="center">
              <Button
                  onClick={() => {
-                   deleteUsers(item.id);
+                   deleteRepairInvoices(item.id);
                  }}
                  style={{ marginLeft: 10 }}
                  variant="contained"
                  color="secondary"
                  startIcon={<DeleteIcon/>}
-                 href="/recordusertable"
+                 href="/recordrepairinvoicetable"
                >
                  Delete
                </Button>

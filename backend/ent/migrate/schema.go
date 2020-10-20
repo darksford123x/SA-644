@@ -69,7 +69,7 @@ var (
 	// StatusRsColumns holds the columns for the "status_rs" table.
 	StatusRsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "sname", Type: field.TypeString},
+		{Name: "sname", Type: field.TypeString, Unique: true},
 	}
 	// StatusRsTable holds the schema information for the "status_rs" table.
 	StatusRsTable = &schema.Table{
@@ -81,7 +81,7 @@ var (
 	// SymptomsColumns holds the columns for the "symptoms" table.
 	SymptomsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "syname", Type: field.TypeString},
+		{Name: "syname", Type: field.TypeString, Unique: true},
 	}
 	// SymptomsTable holds the schema information for the "symptoms" table.
 	SymptomsTable = &schema.Table{
@@ -93,7 +93,7 @@ var (
 	// UsersColumns holds the columns for the "users" table.
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "uname", Type: field.TypeString},
+		{Name: "uname", Type: field.TypeString, Unique: true},
 	}
 	// UsersTable holds the schema information for the "users" table.
 	UsersTable = &schema.Table{

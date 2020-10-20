@@ -14,7 +14,7 @@ type Symptom struct {
 // Fields of the Symptom.
 func (Symptom) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("Syname").NotEmpty(),
+		field.String("Syname").Unique(),
 	}
 }
 

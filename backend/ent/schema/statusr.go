@@ -14,7 +14,7 @@ type StatusR struct {
 // Fields of the StatusR.
 func (StatusR) Fields() []ent.Field {
 	return []ent.Field{
-		field.String("Sname").NotEmpty(),
+		field.String("Sname").Unique(),
 	}
 }
 

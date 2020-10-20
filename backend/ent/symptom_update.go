@@ -71,11 +71,6 @@ func (su *SymptomUpdate) RemoveRepairInformation(r ...*RepairInvoice) *SymptomUp
 
 // Save executes the query and returns the number of rows/vertices matched by this operation.
 func (su *SymptomUpdate) Save(ctx context.Context) (int, error) {
-	if v, ok := su.mutation.Syname(); ok {
-		if err := symptom.SynameValidator(v); err != nil {
-			return 0, &ValidationError{Name: "Syname", err: fmt.Errorf("ent: validator failed for field \"Syname\": %w", err)}
-		}
-	}
 
 	var (
 		err      error
@@ -250,11 +245,6 @@ func (suo *SymptomUpdateOne) RemoveRepairInformation(r ...*RepairInvoice) *Sympt
 
 // Save executes the query and returns the updated entity.
 func (suo *SymptomUpdateOne) Save(ctx context.Context) (*Symptom, error) {
-	if v, ok := suo.mutation.Syname(); ok {
-		if err := symptom.SynameValidator(v); err != nil {
-			return nil, &ValidationError{Name: "Syname", err: fmt.Errorf("ent: validator failed for field \"Syname\": %w", err)}
-		}
-	}
 
 	var (
 		err  error

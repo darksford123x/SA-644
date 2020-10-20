@@ -51,11 +51,6 @@ func (sr *StatusRCreate) Save(ctx context.Context) (*StatusR, error) {
 	if _, ok := sr.mutation.Sname(); !ok {
 		return nil, &ValidationError{Name: "Sname", err: errors.New("ent: missing required field \"Sname\"")}
 	}
-	if v, ok := sr.mutation.Sname(); ok {
-		if err := statusr.SnameValidator(v); err != nil {
-			return nil, &ValidationError{Name: "Sname", err: fmt.Errorf("ent: validator failed for field \"Sname\": %w", err)}
-		}
-	}
 	var (
 		err  error
 		node *StatusR

@@ -2,33 +2,8 @@
 
 package ent
 
-import (
-	"github.com/darksford123x/repairinvoice-record/ent/schema"
-	"github.com/darksford123x/repairinvoice-record/ent/statusr"
-	"github.com/darksford123x/repairinvoice-record/ent/symptom"
-	"github.com/darksford123x/repairinvoice-record/ent/user"
-)
-
 // The init function reads all schema descriptors with runtime
 // code (default values, validators or hooks) and stitches it
 // to their package variables.
 func init() {
-	statusrFields := schema.StatusR{}.Fields()
-	_ = statusrFields
-	// statusrDescSname is the schema descriptor for Sname field.
-	statusrDescSname := statusrFields[0].Descriptor()
-	// statusr.SnameValidator is a validator for the "Sname" field. It is called by the builders before save.
-	statusr.SnameValidator = statusrDescSname.Validators[0].(func(string) error)
-	symptomFields := schema.Symptom{}.Fields()
-	_ = symptomFields
-	// symptomDescSyname is the schema descriptor for Syname field.
-	symptomDescSyname := symptomFields[0].Descriptor()
-	// symptom.SynameValidator is a validator for the "Syname" field. It is called by the builders before save.
-	symptom.SynameValidator = symptomDescSyname.Validators[0].(func(string) error)
-	userFields := schema.User{}.Fields()
-	_ = userFields
-	// userDescUname is the schema descriptor for Uname field.
-	userDescUname := userFields[0].Descriptor()
-	// user.UnameValidator is a validator for the "Uname" field. It is called by the builders before save.
-	user.UnameValidator = userDescUname.Validators[0].(func(string) error)
 }

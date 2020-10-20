@@ -71,11 +71,6 @@ func (sr *StatusRUpdate) RemoveRepairInformation(r ...*RepairInvoice) *StatusRUp
 
 // Save executes the query and returns the number of rows/vertices matched by this operation.
 func (sr *StatusRUpdate) Save(ctx context.Context) (int, error) {
-	if v, ok := sr.mutation.Sname(); ok {
-		if err := statusr.SnameValidator(v); err != nil {
-			return 0, &ValidationError{Name: "Sname", err: fmt.Errorf("ent: validator failed for field \"Sname\": %w", err)}
-		}
-	}
 
 	var (
 		err      error
@@ -250,11 +245,6 @@ func (sro *StatusRUpdateOne) RemoveRepairInformation(r ...*RepairInvoice) *Statu
 
 // Save executes the query and returns the updated entity.
 func (sro *StatusRUpdateOne) Save(ctx context.Context) (*StatusR, error) {
-	if v, ok := sro.mutation.Sname(); ok {
-		if err := statusr.SnameValidator(v); err != nil {
-			return nil, &ValidationError{Name: "Sname", err: fmt.Errorf("ent: validator failed for field \"Sname\": %w", err)}
-		}
-	}
 
 	var (
 		err  error

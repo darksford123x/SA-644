@@ -29,8 +29,3 @@ var Columns = []string{
 	FieldID,
 	FieldSname,
 }
-
-var (
-	// SnameValidator is a validator for the "Sname" field. It is called by the builders before save.
-	SnameValidator func(string) error
-)

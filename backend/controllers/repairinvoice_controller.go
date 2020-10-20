@@ -18,11 +18,10 @@ type RepairInvoiceController struct {
 }
 
 type RepairInvoice struct {
-	Rename       string
-	PersonalName string
-	Device       int
-	StatusR      int
-	Symptom      int
+	Rename  string
+	Device  int
+	StatusR int
+	Symptom int
 }
 
 // CreateRepairInvoice handles POST requests for adding repairInvoice entities

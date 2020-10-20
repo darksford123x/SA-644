@@ -51,11 +51,6 @@ func (uc *UserCreate) Save(ctx context.Context) (*User, error) {
 	if _, ok := uc.mutation.Uname(); !ok {
 		return nil, &ValidationError{Name: "Uname", err: errors.New("ent: missing required field \"Uname\"")}
 	}
-	if v, ok := uc.mutation.Uname(); ok {
-		if err := user.UnameValidator(v); err != nil {
-			return nil, &ValidationError{Name: "Uname", err: fmt.Errorf("ent: validator failed for field \"Uname\": %w", err)}
-		}
-	}
 	var (
 		err  error
 		node *User
