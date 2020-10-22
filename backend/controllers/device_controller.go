@@ -88,7 +88,7 @@ func (ctl *DeviceController) GetDevice(c *gin.Context) {
 		})
 		return
 	}
-	br, err := ctl.client.Device.
+	d, err := ctl.client.Device.
 		Query().
 		WithOwner().
 		Where(device.IDEQ(int(id))).
@@ -101,7 +101,7 @@ func (ctl *DeviceController) GetDevice(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, br)
+	c.JSON(200, d)
 }
 
 // ListDevice handles request to get a list of device entities
@@ -161,7 +161,7 @@ func (ctl *DeviceController) ListDevice(c *gin.Context) {
 // @Failure 400 {object} gin.H
 // @Failure 404 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /devices/{id} [delete]
+// @Router /device/{id} [delete]
 func (ctl *DeviceController) DeleteDevice(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {

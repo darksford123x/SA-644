@@ -29,7 +29,7 @@ type Symptom struct {
 // @Success 200 {object} ent.Symptom
 // @Failure 400 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /stmptoms [post]
+// @Router /symptoms [post]
 func (ctl *SymptomController) CreateSymptom(c *gin.Context) {
 	obj := Symptom{}
 	if err := c.ShouldBind(&obj); err != nil {
@@ -73,7 +73,7 @@ func (ctl *SymptomController) GetSymptom(c *gin.Context) {
 		})
 		return
 	}
-	f, err := ctl.client.Symptom.
+	sy, err := ctl.client.Symptom.
 		Query().
 		Where(symptom.IDEQ(int(id))).
 		Only(context.Background())
@@ -85,7 +85,7 @@ func (ctl *SymptomController) GetSymptom(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, f)
+	c.JSON(200, sy)
 }
 
 // ListSymptom handles request to get a list of symptom entities
@@ -144,7 +144,7 @@ func (ctl *SymptomController) ListSymptom(c *gin.Context) {
 // @Failure 400 {object} gin.H
 // @Failure 404 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /symptoms/{id} [delete]
+// @Router /symptom/{id} [delete]
 func (ctl *SymptomController) DeleteSymptom(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
@@ -169,14 +169,14 @@ func (ctl *SymptomController) DeleteSymptom(c *gin.Context) {
 
 // NewSymptomController creates and registers handles for the symptom controller
 func NewSymptomController(router gin.IRouter, client *ent.Client) *SymptomController {
-	fc := &SymptomController{
+	sym := &SymptomController{
 		client: client,
 		router: router,
 	}
 
-	fc.register()
+	sym.register()
 
-	return fc
+	return sym
 
 }
 

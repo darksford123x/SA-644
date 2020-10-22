@@ -18,7 +18,7 @@ import {
 } from '@backstage/core';
 import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import { ControllersRepairInvoice, EntRepairInvoice } from '../../api';
+import { ControllersRepairInvoice, EntDevice, EntRepairInvoice } from '../../api';
  
 const useStyles = makeStyles({
  table: {
@@ -64,7 +64,6 @@ export default function ComponentsRecordRepairInvoiceTable() {
            <TableCell align="center">queue</TableCell>
            <TableCell align="center">Repaired Invoice ID</TableCell>
            <TableCell align="center">Device</TableCell>
-           <TableCell align="center">User</TableCell>
            <TableCell align="center">Symptom</TableCell>
            <TableCell align="center">StatusR</TableCell>
          </TableRow>
@@ -74,9 +73,8 @@ export default function ComponentsRecordRepairInvoiceTable() {
          {repairinvoices.map((item:any) => (
            <TableRow key={item.id}>
              <TableCell align="center">{item.id}</TableCell>
-             <TableCell align="center">{item.Rename}</TableCell>
+             <TableCell align="center">{item.rename}</TableCell>
              <TableCell align="center">{item.edges?.device?.dname}</TableCell>
-             <TableCell align="center">{item.edges?.user?.uname}</TableCell>
              <TableCell align="center">{item.edges?.symptom?.syname}</TableCell>
              <TableCell align="center">{item.edges?.statusr?.sname}</TableCell>
 

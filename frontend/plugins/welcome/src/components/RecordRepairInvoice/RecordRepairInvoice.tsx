@@ -71,7 +71,7 @@ export default function recordRepairInvoice() {
  const classes = useStyles();
  const http = new DefaultApi();
  
- const [repiarinvoices, setRepairInvoices] = React.useState<EntRepairInvoice[]>([]);
+ const [repiarinvoice, setRepairInvoice] = React.useState<EntRepairInvoice[]>([]);
 
 
  const [devices, setDevices] = React.useState<EntDevice[]>([]);
@@ -128,7 +128,7 @@ export default function recordRepairInvoice() {
 
 const getRepairInvoice = async () => {
   const res = await http.listRepairinvoice({ limit: 10, offset: 0 });
-  setRepairInvoices(res);
+  setRepairInvoice(res);
 };
 
 const handleRenameChange = (event: any) => {
@@ -153,15 +153,15 @@ const SymptomhandleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 
 // create repairinvoice
 const CreateRepairInvoice = async () => {
-  const repairinvoice = {
+  const repairinvoices = {
     Rename: rename,
     device: device,
     user: user,
     statusr: statusr,
     symptom: symptom,
   };
-  console.log(repairinvoice);
-  const res: any = await http.createRepairInvoice({ repairInvoice: repairinvoice });
+  console.log(repairinvoices);
+  const res: any = await http.createRepairInvoice({ repairInvoice: repairinvoices });
   console.log("bruhhhhhhhhh");
   setStatus(true);
   
@@ -177,7 +177,7 @@ const CreateRepairInvoice = async () => {
 
   // clear input form
   function clear() {
-    setRepairInvoices([]);
+    setRepairInvoice([]);
   }
 
   return (
@@ -211,7 +211,7 @@ const CreateRepairInvoice = async () => {
                   </InputAdornment>
                 ),
               }}
-                id="personalID"
+                id="rename"
                 label=""
                 variant="standard"
                 color="secondary"

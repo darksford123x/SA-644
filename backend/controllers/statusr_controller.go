@@ -144,7 +144,7 @@ func (ctl *StatusRController) ListStatusR(c *gin.Context) {
 // @Failure 400 {object} gin.H
 // @Failure 404 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /statusrs/{id} [delete]
+// @Router /statusr/{id} [delete]
 func (ctl *StatusRController) DeleteStatusR(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
@@ -167,16 +167,16 @@ func (ctl *StatusRController) DeleteStatusR(c *gin.Context) {
 	c.JSON(200, gin.H{"result": fmt.Sprintf("ok deleted %v", id)})
 }
 
-// NewStatusRController creates and registers handles for the statusrs controller
+// NewStatusRController creates and registers handles for the statusr controller
 func NewStatusRController(router gin.IRouter, client *ent.Client) *StatusRController {
-	s := &StatusRController{
+	st := &StatusRController{
 		client: client,
 		router: router,
 	}
 
-	s.register()
+	st.register()
 
-	return s
+	return st
 
 }
 

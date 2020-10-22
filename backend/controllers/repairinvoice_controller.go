@@ -34,7 +34,7 @@ type RepairInvoice struct {
 // @Success 200 {object} RepairInvoice
 // @Failure 400 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /repairInvoices [post]
+// @Router /repairinvoices [post]
 func (ctl *RepairInvoiceController) CreateRepairInvoice(c *gin.Context) {
 	obj := RepairInvoice{}
 	if err := c.ShouldBind(&obj); err != nil {
@@ -51,7 +51,7 @@ func (ctl *RepairInvoiceController) CreateRepairInvoice(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(400, gin.H{
-			"error": "faculty not found",
+			"error": "statusr not found",
 		})
 		return
 	}
@@ -63,7 +63,14 @@ func (ctl *RepairInvoiceController) CreateRepairInvoice(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(400, gin.H{
-			"error": "branch not found",
+			"error": "device not found",
+		})
+		return
+	}
+
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": "user not found",
 		})
 		return
 	}
@@ -107,7 +114,7 @@ func (ctl *RepairInvoiceController) CreateRepairInvoice(c *gin.Context) {
 // @Failure 400 {object} gin.H
 // @Failure 404 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /repairvoices/{id} [delete]
+// @Router /repairinvoices/{id} [delete]
 func (ctl *RepairInvoiceController) DeleteRepairInvoice(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
@@ -130,17 +137,17 @@ func (ctl *RepairInvoiceController) DeleteRepairInvoice(c *gin.Context) {
 	c.JSON(200, gin.H{"result": fmt.Sprintf("ok deleted %v", id)})
 }
 
-// ListRepairInvoice handles request to get a list of repairinvoice entities
-// @Summary List repairinvoice entities
-// @Description list repairinvoice entities
-// @ID list-repairinvoice
+// ListRepairInvoice handles request to get a list of repairInvoice entities
+// @Summary List repairInvoice entities
+// @Description list repairInvoice entities
+// @ID list-repairInvoice
 // @Produce json
 // @Param limit  query int false "Limit"
 // @Param offset query int false "Offset"
 // @Success 200 {array} ent.RepairInvoice
 // @Failure 400 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /repairinvoices [get]
+// @Router /repairinvoice [get]
 func (ctl *RepairInvoiceController) ListRepairInvoice(c *gin.Context) {
 	limitQuery := c.Query("limit")
 	limit := 10
@@ -179,16 +186,16 @@ func (ctl *RepairInvoiceController) ListRepairInvoice(c *gin.Context) {
 	c.JSON(200, repairinvoices)
 }
 
-// NewRepairInvoiceController creates and registers handles for the repairinvoice controller
+// NewRepairInvoiceController creates and registers handles for the repairInvoice controller
 func NewRepairInvoiceController(router gin.IRouter, client *ent.Client) *RepairInvoiceController {
-	pvc := &RepairInvoiceController{
+	rp := &RepairInvoiceController{
 		client: client,
 		router: router,
 	}
 
-	pvc.register()
+	rp.register()
 
-	return pvc
+	return rp
 
 }
 

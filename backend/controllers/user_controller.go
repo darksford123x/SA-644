@@ -144,7 +144,7 @@ func (ctl *UserController) ListUser(c *gin.Context) {
 // @Failure 400 {object} gin.H
 // @Failure 404 {object} gin.H
 // @Failure 500 {object} gin.H
-// @Router /users/{id} [delete]
+// @Router /user/{id} [delete]
 func (ctl *UserController) DeleteUser(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
@@ -169,14 +169,14 @@ func (ctl *UserController) DeleteUser(c *gin.Context) {
 
 // NewUserController creates and registers handles for the user controller
 func NewUserController(router gin.IRouter, client *ent.Client) *UserController {
-	fc := &UserController{
+	us := &UserController{
 		client: client,
 		router: router,
 	}
 
-	fc.register()
+	us.register()
 
-	return fc
+	return us
 
 }
 
